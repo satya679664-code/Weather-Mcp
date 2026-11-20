@@ -1,13 +1,12 @@
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 from Tools.weather import get_weather
-from typing import Dict, Any
 
 
-mcp=FastMCP("weather_bot")
+mcp=MCPServer("weather_bot")
 
 
 @mcp.tool()
-async def check_weather(location: str) -> Dict[str, Any]:
+async def get_current_weather(location: str) -> str:
     """
     Asynchronously checks the weather for a given location.
 
@@ -15,5 +14,10 @@ async def check_weather(location: str) -> Dict[str, Any]:
         location (str): The location for which to check the weather.
     """
     return get_weather(location)
+
+
+
+if __name__ == "__main__":
+    mcp.run(transport="stdio")
     
    

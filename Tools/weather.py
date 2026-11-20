@@ -18,7 +18,6 @@ def get_weather(location:str) -> str:
     try:
         with urllib.request.urlopen(url) as response:
             result = response.read().decode('utf-8')
-            print(result)
             return result
     except Exception as e:
         return f"Error fetching weather data: {e}"
